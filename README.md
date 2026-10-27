@@ -4,7 +4,7 @@ Modern English/Swahili hotel landing page using **Next.js App Router, TypeScript
 
 ## Quick start
 
-Requires Node.js 20.9+ and pnpm. If pnpm is missing, run `corepack enable` and then `corepack prepare pnpm@10.15.0 --activate` (or `npm install -g pnpm`).
+Requires Node.js 24.x and pnpm 10.15.0. If pnpm is missing, run `corepack enable` and then `corepack prepare pnpm@10.15.0 --activate` (or `npm install -g pnpm@10.15.0`).
 
 ```bash
 pnpm install
@@ -46,7 +46,15 @@ Click EN / SW in the navbar to switch languages. Buttons prefill inquiry message
 
 ## Deployment to Vercel
 
-Push this folder to GitHub, import the repository in Vercel, set Framework Preset to **Next.js** and Install Command to `pnpm install` if needed. Vercel can detect pnpm from `packageManager` or the pnpm lockfile. No API keys or environment variables required.
+1. Push the project to GitHub, GitLab, or Bitbucket, including `pnpm-lock.yaml` and `vercel.json`.
+2. In Vercel, choose **Add New → Project** and import the repository.
+3. Set **Root Directory** to the folder containing this `package.json`. Leave it at the repository root if this folder is the whole repository.
+4. Use the **Next.js** framework preset and leave the build, install, and output directory overrides disabled. The committed `vercel.json` configures installation and building; `package.json` selects Node.js 24.x and pnpm 10.15.0 through Corepack.
+5. Click **Deploy** and open the resulting URL. Check the EN / SW switch, WhatsApp inquiry buttons, and Maps link.
+
+No API keys or application environment variables are required. Google Fonts are downloaded during the build, so the build environment needs internet access. The illustrative Unsplash photos also require visitors to have access to that service.
+
+Vercel installs dependencies with `corepack pnpm install --frozen-lockfile` and builds with `corepack pnpm build`. Keep the lockfile committed whenever dependencies change. Vercel manages serving the application; no custom start command or static export is needed. See [Vercel's Next.js documentation](https://vercel.com/docs/frameworks/full-stack/nextjs).
 
 ## Launch checklist
 
