@@ -1,6 +1,12 @@
 @import "tailwindcss";
 :root { --red: #ac1822; --deep: #74101a; --ink: #241e1c; --cream: #fcf8f3; }
 html { scroll-behavior: smooth; }
+section[id], #photo-credits { scroll-margin-top: 104px; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
+a:focus-visible, button:focus-visible { outline: 3px solid #d87a20; outline-offset: 5px; }
+.skip-link { position: fixed; top: 8px; left: 8px; z-index: 100; transform: translateY(-150%); background: white; color: var(--deep); padding: 12px 20px; border-radius: 8px; font-weight: 700; }
+.skip-link:focus { transform: translateY(0); }
 body { background: #fff; color: var(--ink); font-family: var(--font-sans), sans-serif; }
 h1,h2,h3,.serif { font-family: var(--font-display), Georgia, serif; }
 ::selection { background: #ac1822; color: white; }
@@ -17,3 +23,8 @@ h1,h2,h3,.serif { font-family: var(--font-display), Georgia, serif; }
 .nav-link:hover { color: var(--red); }
 .card-hover { transition: transform .3s ease, box-shadow .3s ease; }
 .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 55px #48171716; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0s !important; animation-duration: 0s !important; }
+  .pill:hover, .card-hover:hover { transform: none; }
+}
